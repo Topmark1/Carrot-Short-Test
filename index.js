@@ -56,9 +56,15 @@ function expand(id){
   expandMovieContainer.innerHTML = expandMovie;
     });
 })}
+//Main AXIOUSSSSS
+//axios.get(API_URL).then(function (response) { 
+ let x =  (async()=>{
+    try {
+      let response = await fetch(API_URL);
+      let data = await response.json();
+      console.log(data)
 
-axios.get(API_URL).then(function (response) { 
-  const moviesData = response.data;
+  const moviesData = data//response.data;
   let trendingMoviesHTML = "";
   console.log(moviesData);
   let y = document.createElement('div');
@@ -90,8 +96,13 @@ x.addEventListener('click', () => {
   trendingMovies.appendChild(y);
 
   
+} catch (error) {
+  expandMovie = `<h1>Network Error Reload Page!</h1>`
+  expandMovieContainer.innerHTML = expandMovie;
+  }
+})();
+//})
 
-})
   input.addEventListener("keyup", (e) => {
      
     let searchMovies = ""
@@ -121,7 +132,6 @@ x.addEventListener('click', () => {
     });
     trendingMovies.innerHTML = searchMovies;
     });
-  
-    
   });
+  
 
